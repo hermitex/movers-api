@@ -2,7 +2,7 @@
 
 
 * Ruby version
-  - 2.7.4
+  - 2.7.6
 
 * Installation
 
