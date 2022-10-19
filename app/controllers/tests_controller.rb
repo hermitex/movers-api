@@ -3,7 +3,7 @@ class TestsController < ApplicationController
 
   # GET /tests
   def index
-    render json: {message: "Everything works well!!!"}
+    render json: {message: "Everything works well!!"}
   end
 
   # GET /tests/1
