@@ -37,6 +37,8 @@ gem "bootsnap", require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem "rack-cors"
 
+gem "net-http"
+
 # SendGrid gem provides ActionMailer::Base extensions to use SendGrid API features in you emails.
 gem 'sendgrid-rails', '~> 3.1'
 
