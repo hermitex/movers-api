@@ -11,13 +11,10 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_10_23_143253) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "account_balances", force: :cascade do |t|
     t.string "balance"
-    t.bigint "customer_id", null: false
-    t.bigint "mover_id", null: false
+    t.integer "customer_id", null: false
+    t.integer "mover_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_account_balances_on_customer_id"
@@ -32,7 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_143253) do
   create_table "bed_room_items", force: :cascade do |t|
     t.integer "number_of_beds"
     t.integer "number_of_side_tables"
-    t.bigint "item_id", null: false
+    t.integer "item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_bed_room_items_on_item_id"
@@ -43,7 +40,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_143253) do
     t.string "recipient_id"
     t.text "content"
     t.boolean "is_read"
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_chats_on_user_id"
@@ -57,7 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_143253) do
   create_table "dining_room_items", force: :cascade do |t|
     t.integer "number_of_dining_chairs"
     t.integer "number_of_dining_tables"
-    t.bigint "item_id", null: false
+    t.integer "item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_dining_room_items_on_item_id"
@@ -66,7 +63,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_143253) do
   create_table "inventory_checklists", force: :cascade do |t|
     t.integer "number_of_boxes"
     t.string "others"
-    t.bigint "customer_id", null: false
+    t.integer "customer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_inventory_checklists_on_customer_id"
@@ -74,7 +71,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_143253) do
 
   create_table "items", force: :cascade do |t|
     t.string "name"
-    t.bigint "inventory_checklist_id", null: false
+    t.integer "inventory_checklist_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["inventory_checklist_id"], name: "index_items_on_inventory_checklist_id"
@@ -85,7 +82,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_143253) do
     t.integer "number_of_cookers"
     t.integer "number_of_microwaves"
     t.integer "number_of_washing_machines"
-    t.bigint "item_id", null: false
+    t.integer "item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_kitchen_items_on_item_id"
@@ -95,7 +92,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_143253) do
     t.integer "number_of_sofas"
     t.integer "number_of_cabinets"
     t.integer "number_of_tables"
-    t.bigint "item_id", null: false
+    t.integer "item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_living_room_items_on_item_id"
@@ -113,8 +110,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_143253) do
     t.date "earliest_date"
     t.date "latest_date"
     t.string "status"
-    t.bigint "customer_id", null: false
-    t.bigint "mover_id", null: false
+    t.integer "customer_id", null: false
+    t.integer "mover_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_move_bookings_on_customer_id"
@@ -128,7 +125,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_143253) do
 
   create_table "notifications", force: :cascade do |t|
     t.text "message"
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_notifications_on_user_id"
@@ -137,8 +134,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_143253) do
   create_table "quotes", force: :cascade do |t|
     t.decimal "amount"
     t.string "status"
-    t.bigint "customer_id", null: false
-    t.bigint "mover_id", null: false
+    t.integer "customer_id", null: false
+    t.integer "mover_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_quotes_on_customer_id"
@@ -151,7 +148,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_143253) do
     t.decimal "flat_price"
     t.decimal "price_per_unit"
     t.decimal "dicount"
-    t.bigint "mover_id", null: false
+    t.integer "mover_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["mover_id"], name: "index_rates_on_mover_id"
@@ -160,8 +157,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_143253) do
   create_table "reviews", force: :cascade do |t|
     t.integer "rating"
     t.text "content"
-    t.bigint "mover_id", null: false
-    t.bigint "customer_id", null: false
+    t.integer "mover_id", null: false
+    t.integer "customer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_reviews_on_customer_id"
@@ -170,7 +167,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_143253) do
 
   create_table "specialities", force: :cascade do |t|
     t.string "name"
-    t.bigint "mover_id", null: false
+    t.integer "mover_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["mover_id"], name: "index_specialities_on_mover_id"
@@ -184,7 +181,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_143253) do
     t.string "type"
     t.string "password_digest"
     t.string "avatar_url"
-    t.bigint "location_id", null: false
+    t.integer "location_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["location_id"], name: "index_users_on_location_id"

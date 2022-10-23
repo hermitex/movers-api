@@ -27,7 +27,7 @@ User.create!(
     {
       "full_name": 'John Doe',
       "phone": '0797165741',
-      "password_digest": 'johndoe',
+      "password": 'johndoe',
       "avatar_url": '',
       "type": 'Customer',
       "account_type": "customer",
@@ -37,7 +37,7 @@ User.create!(
     {
       "full_name": 'Jane Doe',
       "phone": '0797165747',
-      "password_digest": 'janedoe',
+      "password": 'janedoe',
       "avatar_url": '',
       "type": 'Mover',
       "account_type": "mover",

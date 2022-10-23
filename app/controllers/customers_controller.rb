@@ -5,12 +5,12 @@ class CustomersController < ApplicationController
   def index
     @customers = Customer.all
 
-    render json: @customers
+    render json: @customers.to_json
   end
 
   # GET /customers/1
   def show
-    render json: @customer
+    render json: @customer.to_json
   end
 
   # POST /customers
