@@ -1,2 +1,2 @@
-class Mover < ApplicationRecord
+class Mover < User
 end
