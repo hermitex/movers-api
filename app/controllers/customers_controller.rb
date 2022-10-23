@@ -1,31 +1,51 @@
 class CustomersController < ApplicationController
-    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
-    rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
+  before_action :set_customer, only: %i[ show update destroy ]
 
-    def index
-        customers = Customer.all
-        render json: customers, status: :ok
-    end
+  # GET /customers
+  def index
+    @customers = Customer.all
 
-    def show
-        customer = Customer.find_by(id: params[:user_id])
-        render json: customer, status: :ok
-    end
-
-    private
-     def user_params
-        params.permit(:rates, :speciality)
-     end
-
-     def render_unprocessable_entity(invalid)
-        render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
-     end
-
-     def render_not_found
-        render json: {error: "User not found!"}, status: :not_found
-     end
-
-
+    render json: @customers
   end
 
+  # GET /customers/1
+  def show
+    render json: @customer
+  end
 
+  # POST /customers
+  def create
+    @customer = Customer.new(customer_params)
+
+    if @customer.save
+      render json: @customer, status: :created, location: @customer
+    else
+      render json: @customer.errors, status: :unprocessable_entity
+    end
+  end
+
+  # PATCH/PUT /customers/1
+  def update
+    if @customer.update(customer_params)
+      render json: @customer
+    else
+      render json: @customer.errors, status: :unprocessable_entity
+    end
+  end
+
+  # DELETE /customers/1
+  def destroy
+    @customer.destroy
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_customer
+      @customer = Customer.find(params[:id])
+    end
+
+    # Only allow a list of trusted parameters through.
+    def customer_params
+      params.fetch(:customer, {})
+    end
+end

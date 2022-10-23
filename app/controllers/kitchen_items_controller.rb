@@ -46,6 +46,6 @@ class KitchenItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def kitchen_item_params
-      params.require(:kitchen_item).permit(:number_of_fridges, :number_of_cookers, :number_of_microwaves, :number_of_washing_machines)
+      params.require(:kitchen_item).permit(:number_of_fridges, :number_of_cookers, :number_of_microwaves, :number_of_washing_machines, :item_id)
     end
 end

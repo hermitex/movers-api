@@ -4,6 +4,7 @@ class CreateLivingRoomItems < ActiveRecord::Migration[7.0]
       t.integer :number_of_sofas
       t.integer :number_of_cabinets
       t.integer :number_of_tables
+      t.references :item, null: false, foreign_key: true
 
       t.timestamps
     end

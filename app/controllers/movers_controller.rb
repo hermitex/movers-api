@@ -1,31 +1,51 @@
 class MoversController < ApplicationController
-  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
-  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
+  before_action :set_mover, only: %i[ show update destroy ]
 
+  # GET /movers
   def index
-      movers = Mover.all
-      render json: movers, status: :ok
+    @movers = Mover.all
+
+    render json: @movers
   end
 
+  # GET /movers/1
   def show
-      mover = Mover.find_by(id: params[:user_id])
-      render json: mover, status: :ok
+    render json: @mover
+  end
+
+  # POST /movers
+  def create
+    @mover = Mover.new(mover_params)
+
+    if @mover.save
+      render json: @mover, status: :created, location: @mover
+    else
+      render json: @mover.errors, status: :unprocessable_entity
+    end
+  end
+
+  # PATCH/PUT /movers/1
+  def update
+    if @mover.update(mover_params)
+      render json: @mover
+    else
+      render json: @mover.errors, status: :unprocessable_entity
+    end
+  end
+
+  # DELETE /movers/1
+  def destroy
+    @mover.destroy
   end
 
   private
-   def user_params
-      params.permit(:rates, :speciality)
-   end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_mover
+      @mover = Mover.find(params[:id])
+    end
 
-   def render_unprocessable_entity(invalid)
-      render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
-   end
-
-   def render_not_found
-      render json: {error: "User not found!"}, status: :not_found
-   end
-
-
+    # Only allow a list of trusted parameters through.
+    def mover_params
+      params.fetch(:mover, {})
+    end
 end
-
-

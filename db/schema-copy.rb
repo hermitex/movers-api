@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_23_123158) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_23_085034) do
   create_table "account_balances", force: :cascade do |t|
     t.decimal "balance"
     t.integer "customer_id", null: false
@@ -29,10 +29,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_123158) do
   create_table "bed_room_items", force: :cascade do |t|
     t.integer "number_of_beds"
     t.integer "number_of_side_tables"
-    t.integer "item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_bed_room_items_on_item_id"
+    t.bigint "item_id"
   end
 
   create_table "chats", force: :cascade do |t|
@@ -54,18 +53,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_123158) do
   create_table "dining_room_items", force: :cascade do |t|
     t.integer "number_of_dining_chairs"
     t.integer "number_of_dining_tables"
-    t.integer "item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_dining_room_items_on_item_id"
+    t.bigint "item_id"
   end
 
   create_table "inventory_checklists", force: :cascade do |t|
-    t.integer "number_of_boxes"
-    t.string "others"
     t.integer "customer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "number_of_boxes"
+    t.string "others"
     t.index ["customer_id"], name: "index_inventory_checklists_on_customer_id"
   end
 
@@ -81,20 +79,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_123158) do
     t.integer "number_of_cookers"
     t.integer "number_of_microwaves"
     t.integer "number_of_washing_machines"
-    t.integer "item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_kitchen_items_on_item_id"
+    t.bigint "item_id"
   end
 
   create_table "living_room_items", force: :cascade do |t|
     t.integer "number_of_sofas"
     t.integer "number_of_cabinets"
     t.integer "number_of_tables"
-    t.integer "item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_living_room_items_on_item_id"
+    t.bigint "item_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -118,6 +114,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_123158) do
   end
 
   create_table "movers", force: :cascade do |t|
+    t.decimal "rates"
+    t.string "speciality"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -143,14 +141,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_123158) do
 
   create_table "rates", force: :cascade do |t|
     t.string "item"
-    t.string "residency_type"
-    t.decimal "distance"
     t.decimal "flat_price"
     t.decimal "price_per_unit"
     t.decimal "discount"
     t.integer "mover_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "residency_type"
+    t.decimal "distance"
     t.index ["mover_id"], name: "index_rates_on_mover_id"
   end
 
@@ -158,10 +156,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_123158) do
     t.integer "rating"
     t.text "content"
     t.integer "mover_id", null: false
-    t.integer "customer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_reviews_on_customer_id"
+    t.bigint "customer_id", null: false
     t.index ["mover_id"], name: "index_reviews_on_mover_id"
   end
 
@@ -176,33 +173,28 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_123158) do
   create_table "users", force: :cascade do |t|
     t.string "full_name"
     t.string "phone"
-    t.string "email"
-    t.string "account_type"
-    t.string "type"
     t.string "password_digest"
     t.string "avatar_url"
     t.integer "location_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email"
+    t.string "type", default: "Customer", null: false
+    t.string "account_type"
     t.index ["location_id"], name: "index_users_on_location_id"
   end
 
   add_foreign_key "account_balances", "customers"
   add_foreign_key "account_balances", "movers"
-  add_foreign_key "bed_room_items", "items"
   add_foreign_key "chats", "users"
-  add_foreign_key "dining_room_items", "items"
   add_foreign_key "inventory_checklists", "customers"
   add_foreign_key "items", "inventory_checklists"
-  add_foreign_key "kitchen_items", "items"
-  add_foreign_key "living_room_items", "items"
   add_foreign_key "move_bookings", "customers"
   add_foreign_key "move_bookings", "movers"
   add_foreign_key "notifications", "users"
   add_foreign_key "quotes", "movers"
   add_foreign_key "quotes", "users"
   add_foreign_key "rates", "movers"
-  add_foreign_key "reviews", "customers"
   add_foreign_key "reviews", "movers"
   add_foreign_key "specialities", "movers"
   add_foreign_key "users", "locations"

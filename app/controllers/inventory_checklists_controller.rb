@@ -46,6 +46,6 @@ class InventoryChecklistsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def inventory_checklist_params
-      params.require(:inventory_checklist).permit(:number_of_beds, :number_of_chairs, :number_of_fridges, :number_of_washing_machines, :number_of_tables, :customer_id)
+      params.require(:inventory_checklist).permit(:number_of_boxes, :others, :customer_id)
     end
 end

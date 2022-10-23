@@ -5,6 +5,7 @@ class CreateKitchenItems < ActiveRecord::Migration[7.0]
       t.integer :number_of_cookers
       t.integer :number_of_microwaves
       t.integer :number_of_washing_machines
+      t.references :item, null: false, foreign_key: true
 
       t.timestamps
     end

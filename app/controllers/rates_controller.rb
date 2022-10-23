@@ -46,6 +46,6 @@ class RatesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def rate_params
-      params.require(:rate).permit(:item, :flat_price, :price_per_unit, :discount, :mover_id)
+      params.require(:rate).permit(:item, :residency_type, :distance, :flat_price, :price_per_unit, :discount, :mover_id)
     end
 end

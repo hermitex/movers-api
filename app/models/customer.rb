@@ -1,3 +1,2 @@
-class Customer < User
-  has_one :account_balance
+class Customer < ApplicationRecord
 end
