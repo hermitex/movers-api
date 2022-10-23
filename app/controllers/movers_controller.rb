@@ -26,6 +26,7 @@ class MoversController < ApplicationController
 
   # PATCH/PUT /movers/1
   def update
+    byebug
     if @mover.update(mover_params)
       render json: @mover
     else
