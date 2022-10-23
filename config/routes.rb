@@ -16,21 +16,13 @@ Rails.application.routes.draw do
   resources :account_balances
   resources :items
   resources :inventory_checklists
-  resources :customers
-  resources :movers
-  # resources :users, Only: [:index]
+  resources :customers, only: [:index, :show, :create, :update, :destroy]
+  resources :movers, only: [:index, :create, :update, :destroy]
+  resources :users, only: [:index, :create, :update, :destroy]
   resources :locations
 
     # User
-    get '/users'  => 'users#index'
-
     get '/users/:user_id'  => 'users#find_user'
-
-    post '/users' => 'users#create'
-
-    patch '/users/:user_id' => 'users#update'
-
-    delete '/users/:user_id' => 'users#destroy'
 
     get '/me' => 'users#show'
 
@@ -40,27 +32,6 @@ Rails.application.routes.draw do
     post '/login' => 'sessions#create'
 
     delete 'logout' => 'sessions#destroy'
-
-    # Movers
-    get '/movers' => 'movers#index'
-
-    post '/movers' => 'movers#create'
-
-    patch '/movers/:mover_id' => 'movers#update'
-
-    delete '/movers/:mover_id' => 'movers#destroy'
-
-
-    # Customers
-    get '/customers' => 'customers#index'
-
-    post '/customers' => 'customers#create'
-
-    patch '/customers/:customer_id' => 'customers#update'
-
-    delete '/customers/:customer_id' => 'customers#destroy'
-
-
 
 end
 

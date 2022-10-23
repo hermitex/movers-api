@@ -14,12 +14,18 @@ class UsersController < ApplicationController
     end
 
     def find_user
-        mover = Mover.find_by(id: params[:user_id])
-        render json: mover, status: :ok
+        user = User.find_by(id: params[:user_id])
+        render json: user, status: :ok
+    end
+
+    def destroy
+        user = User.find(params[:id])
+        user.destroy
+        head :no_content
     end
 
     def update
-        user = User.find_by(id: params[:user_id])
+        user = User.find(params[:id])
         user.update!(user_params)
         render json: user, status: :accepted
     end
@@ -34,9 +40,6 @@ class UsersController < ApplicationController
     end
 
     private
-     def user_params
-        params.permit(:fullname, :password, :password_confirmation, :email)
-     end
 
      def render_unprocessable_entity(invalid)
         render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
@@ -49,6 +52,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:full_name, :phone, :email, :account_type, :type, :password_digest, :avatar_url, :location_id)
+      params.permit(:full_name, :phone, :email, :account_type, :type, :password, :password_confirmation, :avatar_url, :location_id)
     end
 end
