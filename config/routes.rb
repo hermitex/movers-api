@@ -18,9 +18,9 @@ Rails.application.routes.draw do
   resources :inventory_checklists
   resources :customers
   resources :movers
-  resources :users
+  resources :users, Only: [:index]
   resources :locations
-                              
+
     # User
     get '/users'  => 'users#index'
 
