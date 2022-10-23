@@ -5,12 +5,12 @@ class MoversController < ApplicationController
   def index
     @movers = Mover.all
 
-    render json: @movers.to_json
+    render json: @movers
   end
 
   # GET /movers/1
   def show
-    render json: @mover.to_json
+    render json: @mover
   end
 
   # POST /movers
