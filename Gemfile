@@ -63,7 +63,7 @@ end
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails', '~> 6.0', '>= 6.0.1'
-  gem 'factory_bot', '~> 6.2', '>= 6.2.1'
+  # gem 'factory_bot', '~> 6.2', '>= 6.2.1'
   gem 'capybara'
   gem 'database_cleaner'
 end
