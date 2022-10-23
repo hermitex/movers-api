@@ -1,25 +1,26 @@
 # routes
 
 Rails.application.routes.draw do
-  resources :customers
-  resources :movers
   resources :specialities
   resources :reviews
   resources :rates
-  resources :move_bookings
   resources :quotes
   resources :notifications
-  resources :locations
+  resources :move_bookings
   resources :living_room_items
   resources :kitchen_items
+  resources :dining_room_items
+  resources :chats
+  resources :bed_room_items
+  resources :admins
+  resources :account_balances
   resources :items
-      resources :dining_room_items
-    resources :chats
-    resources :account_balances
-          resources :bed_room_items
-        resources :admins
-      resources :inventory_checklists
-    
+  resources :inventory_checklists
+  resources :customers
+  resources :movers
+  resources :users
+  resources :locations
+                              
     # User
     get '/users'  => 'users#index'
 
