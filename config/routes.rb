@@ -1,14 +1,43 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :items
+  resources :kitchen_items
+  resources :dining_room_items
+  resources :bed_room_items
+  resources :living_room_items
+  resources :notifications
+  resources :chats
+  resources :admins
+  resources :move_bookings
+  resources :inventory_checklists
+  resources :rates
+  resources :reviews
 
-  get '/me', to: 'users#show'
+  # User
+  get '/users'  => 'users#index'
 
-  post '/signup', to: "users#create"
+  post '/users' => 'users#create'
 
-   post '/login', to: 'sessions#create'
-   delete 'logout', to: 'sessions#destroy' 
+  patch '/users' => 'users#update'
+
+  delete '/users' => 'users#destroy'
+
+  get '/me' => 'users#show'
+
+  post '/signup' => "users#create"
+
+  # Session
+  post '/login' => 'sessions#create'
+
+  delete 'logout' => 'sessions#destroy'
+
+  # Movers
+  get '/movers' => 'movers#index'
+
+  post '/movers' => 'movers#create'
+
+  patch '/movers' => 'movers#update'
+
+  delete '/movers' => 'movers#destroy'
 
 
-  # Defines the root path route ("/")
-  # root "articles#index"
 end
