@@ -108,6 +108,8 @@ GEM
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.11.0)
+    factory_bot (6.2.1)
+      activesupport (>= 5.0.0)
     faker (2.23.0)
       i18n (>= 1.8.11, < 2)
     globalid (1.0.0)
@@ -247,6 +249,7 @@ DEPENDENCIES
   cloudinary (~> 1.23)
   database_cleaner
   debug
+  factory_bot (~> 6.2, >= 6.2.1)
   faker (~> 2.23)
   jwt (~> 2.5)
   net-http
