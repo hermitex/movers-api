@@ -13,6 +13,17 @@ class UsersController < ApplicationController
         render json: user, status: :created
     end
 
+    def find_user
+        mover = Mover.find_by(id: params[:user_id])
+        render json: mover, status: :ok
+    end
+
+    def update
+        user = User.find_by(id: params[:user_id])
+        user.update!(user_params)
+        render json: user, status: :accepted
+    end
+
     def show
         user = User.find_by(id: session[:user_id])
         if user
@@ -34,7 +45,6 @@ class UsersController < ApplicationController
      def render_not_found
         render json: {error: "User not found!"}, status: :not_found
      end
-
 
 end
 

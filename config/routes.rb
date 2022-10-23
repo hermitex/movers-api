@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :account_balances
+  resources :specialities
   resources :items
   resources :kitchen_items
   resources :dining_room_items
@@ -15,11 +17,13 @@ Rails.application.routes.draw do
   # User
   get '/users'  => 'users#index'
 
+  get '/users/:user_id'  => 'users#find_user'
+
   post '/users' => 'users#create'
 
-  patch '/users' => 'users#update'
+  patch '/users/:user_id' => 'users#update'
 
-  delete '/users' => 'users#destroy'
+  delete '/users/:user_id' => 'users#destroy'
 
   get '/me' => 'users#show'
 
@@ -35,9 +39,20 @@ Rails.application.routes.draw do
 
   post '/movers' => 'movers#create'
 
-  patch '/movers' => 'movers#update'
+  patch '/movers/:mover_id' => 'movers#update'
 
-  delete '/movers' => 'movers#destroy'
+  delete '/movers/:mover_id' => 'movers#destroy'
+
+
+  # Customers
+  get '/customers' => 'customers#index'
+
+  post '/customers' => 'customers#create'
+
+  patch '/customers/:customer_id' => 'customers#update'
+
+  delete '/customers/:customer_id' => 'customers#destroy'
+
 
 
 end

@@ -5,6 +5,6 @@ class User < ApplicationRecord
   validates :full_name, presence: true, length: { minimum: 3}
   validates :email, presence: true, uniqueness: true
   validates :phone, presence: true, uniqueness: true
-  validates :account_type, presence: true
+  validates :type, presence: true
 
 end

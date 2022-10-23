@@ -1,6 +1,6 @@
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
-# incrementally modify your database, and then regenerate this schema definition.]
+# incrementally modify your database, and then regenerate this schema definition.
 #
 # This file is the source Rails uses to define your schema when running `bin/rails
 # db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_23_000421) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_23_085034) do
+  create_table "account_balances", force: :cascade do |t|
+    t.decimal "balance"
+    t.integer "customer_id", null: false
+    t.integer "mover_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_account_balances_on_customer_id"
+    t.index ["mover_id"], name: "index_account_balances_on_mover_id"
+  end
+
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -36,7 +46,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_000421) do
   end
 
   create_table "customers", force: :cascade do |t|
-    t.decimal "account_balance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -153,6 +162,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_000421) do
     t.index ["mover_id"], name: "index_reviews_on_mover_id"
   end
 
+  create_table "specialities", force: :cascade do |t|
+    t.string "name"
+    t.integer "mover_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mover_id"], name: "index_specialities_on_mover_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "full_name"
     t.string "phone"
@@ -163,9 +180,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_000421) do
     t.datetime "updated_at", null: false
     t.string "email"
     t.string "type", default: "Customer", null: false
+    t.string "account_type"
     t.index ["location_id"], name: "index_users_on_location_id"
   end
 
+  add_foreign_key "account_balances", "customers"
+  add_foreign_key "account_balances", "movers"
   add_foreign_key "chats", "users"
   add_foreign_key "inventory_checklists", "customers"
   add_foreign_key "items", "inventory_checklists"
@@ -176,5 +196,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_000421) do
   add_foreign_key "quotes", "users"
   add_foreign_key "rates", "movers"
   add_foreign_key "reviews", "movers"
+  add_foreign_key "specialities", "movers"
   add_foreign_key "users", "locations"
 end

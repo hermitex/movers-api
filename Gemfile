@@ -48,6 +48,8 @@ gem 'jwt', '~> 2.5'
 # Client library for easily using the Cloudinary service
 gem 'cloudinary', '~> 1.23'
 
+gem 'faker', '~> 2.23'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

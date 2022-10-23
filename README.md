@@ -25,3 +25,7 @@
 * Deployment instructions
 
 * ...
+
+
+* ERD - [Live link](https://dbdiagram.io/d/6354f34a4709410195c0020b)
+![ERD](./assets/moovers-erd.png)

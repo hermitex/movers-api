@@ -10,6 +10,18 @@ User.destroy_all
 
 puts "Seeding..."
 
+Location.create!(
+ [
+  { "name": "Nairobi",
+  "longitude": "1.45",
+  "latitude": "37.45"},
+  { "name": "Juja",
+    "longitude": "1.45",
+    "latitude": "36.45"
+  },
+]
+)
+
 User.create!(
   [
     {
@@ -17,7 +29,8 @@ User.create!(
       "phone": '0797165741',
       "password": 'johndoe',
       "avatar_url": '',
-      "account_type": 'customer',
+      "type": 'Customer',
+      "account_type": "customer",
       "location_id": 1,
       "email": 'johndoe@gmail.com'
     },
@@ -26,20 +39,10 @@ User.create!(
       "phone": '0797165747',
       "password": 'janedoe',
       "avatar_url": '',
-      "account_type": 'mover',
+      "type": 'Mover',
+      "account_type": "mover",
       "location_id": 2,
       "email": 'janedoe@gmail.com'
-    }
-  ]
-)
-
-Customer.create!(
-  [
-    {
-      "account_balance": 10000
-    },
-    {
-      "account_balance": 5000
     }
   ]
 )

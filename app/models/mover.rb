@@ -1,4 +1,6 @@
 class Mover < User
-  validates :rates, presence: true
-  validates :speciality, presence: true
+  has_many :specialities
+  has_many :rates
+
+  has_one :account_balance
 end
