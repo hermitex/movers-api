@@ -42,5 +42,7 @@ module MoversApi
 
     # Use SameSite=Strict for all cookies to help protect against CSRF
     config.action_dispatch.cookies_same_site_protection = :strict
+
+    # config.active_record.schema_format = :sql
   end
 end

@@ -12,9 +12,9 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/tests", type: :request do
+RSpec.describe "/chats", type: :request do
   # This should return the minimal set of attributes required to create a valid
-  # Test. As you add validations to Test, be sure to
+  # Chat. As you add validations to Chat, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -26,7 +26,7 @@ RSpec.describe "/tests", type: :request do
 
   # This should return the minimal set of values that should be in the headers
   # in order to pass any filters (e.g. authentication) defined in
-  # TestsController, or in your router and rack
+  # ChatsController, or in your router and rack
   # middleware. Be sure to keep this updated too.
   let(:valid_headers) {
     {}
@@ -34,48 +34,48 @@ RSpec.describe "/tests", type: :request do
 
   describe "GET /index" do
     it "renders a successful response" do
-      Test.create! valid_attributes
-      get tests_url, headers: valid_headers, as: :json
+      Chat.create! valid_attributes
+      get chats_url, headers: valid_headers, as: :json
       expect(response).to be_successful
     end
   end
 
   describe "GET /show" do
     it "renders a successful response" do
-      test = Test.create! valid_attributes
-      get test_url(test), as: :json
+      chat = Chat.create! valid_attributes
+      get chat_url(chat), as: :json
       expect(response).to be_successful
     end
   end
 
   describe "POST /create" do
     context "with valid parameters" do
-      it "creates a new Test" do
+      it "creates a new Chat" do
         expect {
-          post tests_url,
-               params: { test: valid_attributes }, headers: valid_headers, as: :json
-        }.to change(Test, :count).by(1)
+          post chats_url,
+               params: { chat: valid_attributes }, headers: valid_headers, as: :json
+        }.to change(Chat, :count).by(1)
       end
 
-      it "renders a JSON response with the new test" do
-        post tests_url,
-             params: { test: valid_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with the new chat" do
+        post chats_url,
+             params: { chat: valid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:created)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
 
     context "with invalid parameters" do
-      it "does not create a new Test" do
+      it "does not create a new Chat" do
         expect {
-          post tests_url,
-               params: { test: invalid_attributes }, as: :json
-        }.to change(Test, :count).by(0)
+          post chats_url,
+               params: { chat: invalid_attributes }, as: :json
+        }.to change(Chat, :count).by(0)
       end
 
-      it "renders a JSON response with errors for the new test" do
-        post tests_url,
-             params: { test: invalid_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with errors for the new chat" do
+        post chats_url,
+             params: { chat: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
@@ -88,28 +88,28 @@ RSpec.describe "/tests", type: :request do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested test" do
-        test = Test.create! valid_attributes
-        patch test_url(test),
-              params: { test: new_attributes }, headers: valid_headers, as: :json
-        test.reload
+      it "updates the requested chat" do
+        chat = Chat.create! valid_attributes
+        patch chat_url(chat),
+              params: { chat: new_attributes }, headers: valid_headers, as: :json
+        chat.reload
         skip("Add assertions for updated state")
       end
 
-      it "renders a JSON response with the test" do
-        test = Test.create! valid_attributes
-        patch test_url(test),
-              params: { test: new_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with the chat" do
+        chat = Chat.create! valid_attributes
+        patch chat_url(chat),
+              params: { chat: new_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
 
     context "with invalid parameters" do
-      it "renders a JSON response with errors for the test" do
-        test = Test.create! valid_attributes
-        patch test_url(test),
-              params: { test: invalid_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with errors for the chat" do
+        chat = Chat.create! valid_attributes
+        patch chat_url(chat),
+              params: { chat: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
@@ -117,11 +117,11 @@ RSpec.describe "/tests", type: :request do
   end
 
   describe "DELETE /destroy" do
-    it "destroys the requested test" do
-      test = Test.create! valid_attributes
+    it "destroys the requested chat" do
+      chat = Chat.create! valid_attributes
       expect {
-        delete test_url(test), headers: valid_headers, as: :json
-      }.to change(Test, :count).by(-1)
+        delete chat_url(chat), headers: valid_headers, as: :json
+      }.to change(Chat, :count).by(-1)
     end
   end
 end

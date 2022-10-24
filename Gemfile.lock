@@ -110,6 +110,8 @@ GEM
     erubi (1.11.0)
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
+    faker (2.23.0)
+      i18n (>= 1.8.11, < 2)
     globalid (1.0.0)
       activesupport (>= 5.0)
     http-accept (1.7.0)
@@ -156,6 +158,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.4)
+    rack-cors (1.1.1)
+      rack (>= 2.0.0)
     rack-test (2.0.2)
       rack (>= 1.3)
     rails (7.0.4)
@@ -246,10 +250,12 @@ DEPENDENCIES
   database_cleaner
   debug
   factory_bot (~> 6.2, >= 6.2.1)
+  faker (~> 2.23)
   jwt (~> 2.5)
   net-http
   pg (~> 1.4, >= 1.4.3)
   puma (~> 5.0)
+  rack-cors
   rails (~> 7.0.4)
   rspec-json_expectations
   rspec-rails (~> 6.0, >= 6.0.1)
@@ -260,7 +266,7 @@ DEPENDENCIES
   tzinfo-data
 
 RUBY VERSION
-   ruby 2.7.4p191
+   ruby 2.7.6p219
 
 BUNDLED WITH
-   2.3.23
+   2.3.21

@@ -35,7 +35,7 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem "rack-cors"
+gem "rack-cors"
 
 gem "net-http"
 
@@ -48,6 +48,8 @@ gem 'jwt', '~> 2.5'
 # Client library for easily using the Cloudinary service
 gem 'cloudinary', '~> 1.23'
 
+gem 'faker', '~> 2.23'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
@@ -56,6 +58,7 @@ end
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   gem "spring"
+
 end
 
 group :development, :test do
