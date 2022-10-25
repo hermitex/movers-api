@@ -2,6 +2,7 @@ class UsersController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
+
     def index
         users = User.all
         render json: users, status: :ok
@@ -32,10 +33,11 @@ class UsersController < ApplicationController
 
     def show
         user = User.find_by(id: session[:user_id])
+        byebug
         if user
-            render json: user, status: :created
+          render json: user, status: :ok
         else
-            render json: {error: "Not authorized"}, status: :unauthorized
+          render json: {error: "Unauthorized"}, status: :unauthorized
         end
     end
 
