@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   resources :items
   resources :inventory_checklists
   resources :customers, only: [:index, :show, :create, :update, :destroy]
-  resources :movers, only: [:index, :create, :update, :destroy]
+  resources :movers, only: [:index, :show, :create, :update, :destroy]
   resources :users, only: [:index, :create, :update, :destroy]
   resources :locations
 

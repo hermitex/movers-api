@@ -10,18 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_26_132533) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_26_144058) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "account_balances", force: :cascade do |t|
     t.string "balance"
-    t.bigint "customer_id", null: false
-    t.bigint "mover_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_account_balances_on_customer_id"
-    t.index ["mover_id"], name: "index_account_balances_on_mover_id"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_account_balances_on_user_id"
   end
 
   create_table "admins", force: :cascade do |t|
@@ -111,12 +109,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_26_132533) do
     t.date "earliest_date"
     t.date "latest_date"
     t.string "status"
-    t.bigint "customer_id", null: false
-    t.bigint "mover_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_move_bookings_on_customer_id"
-    t.index ["mover_id"], name: "index_move_bookings_on_mover_id"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_move_bookings_on_user_id"
   end
 
   create_table "movers", force: :cascade do |t|
@@ -136,12 +132,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_26_132533) do
   create_table "quotes", force: :cascade do |t|
     t.decimal "amount"
     t.string "status"
-    t.bigint "customer_id", null: false
-    t.bigint "mover_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_quotes_on_customer_id"
-    t.index ["mover_id"], name: "index_quotes_on_mover_id"
+    t.bigint "inventory_checklist_id"
+    t.bigint "user_id"
+    t.index ["inventory_checklist_id"], name: "index_quotes_on_inventory_checklist_id"
+    t.index ["user_id"], name: "index_quotes_on_user_id"
   end
 
   create_table "rates", force: :cascade do |t|
@@ -161,20 +157,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_26_132533) do
   create_table "reviews", force: :cascade do |t|
     t.integer "rating"
     t.text "content"
-    t.bigint "mover_id", null: false
-    t.bigint "customer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_reviews_on_customer_id"
-    t.index ["mover_id"], name: "index_reviews_on_mover_id"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "specialities", force: :cascade do |t|
     t.string "name"
-    t.bigint "mover_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["mover_id"], name: "index_specialities_on_mover_id"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_specialities_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -191,20 +185,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_26_132533) do
     t.index ["location_id"], name: "index_users_on_location_id"
   end
 
-  add_foreign_key "account_balances", "customers"
-  add_foreign_key "account_balances", "movers"
   add_foreign_key "bed_room_items", "inventory_checklists"
   add_foreign_key "chats", "users"
   add_foreign_key "dining_room_items", "inventory_checklists"
   add_foreign_key "kitchen_items", "inventory_checklists"
   add_foreign_key "living_room_items", "inventory_checklists"
-  add_foreign_key "move_bookings", "customers"
-  add_foreign_key "move_bookings", "movers"
   add_foreign_key "notifications", "users"
-  add_foreign_key "quotes", "customers"
-  add_foreign_key "quotes", "movers"
-  add_foreign_key "reviews", "customers"
-  add_foreign_key "reviews", "movers"
-  add_foreign_key "specialities", "movers"
+  add_foreign_key "specialities", "users"
   add_foreign_key "users", "locations"
 end

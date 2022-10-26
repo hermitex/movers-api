@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
     def index
         users = User.all
+        byebug
         render json: users, status: :ok
     end
 
@@ -33,8 +34,8 @@ class UsersController < ApplicationController
 
     def show
         user = User.find_by(id: session[:user_id])
-        byebug
         if user
+            # byebug
           render json: user, status: :ok
         else
           render json: {error: "Unauthorized"}, status: :unauthorized
