@@ -1,3 +1,3 @@
 class Rate < ApplicationRecord
-  belongs_to :mover
+  belongs_to :user
 end

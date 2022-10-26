@@ -1,4 +1,4 @@
 class ItemSerializer < ActiveModel::Serializer
   attributes :id, :name
-  has_one :inventory_checklist
+  belongs_to :inventory_checklist
 end

@@ -5,7 +5,7 @@ class InventoryChecklistsController < ApplicationController
   def index
     @inventory_checklists = InventoryChecklist.all
 
-    render json: @inventory_checklists
+    render json: @inventory_checklists, status: :ok
   end
 
   # GET /inventory_checklists/1
@@ -46,6 +46,6 @@ class InventoryChecklistsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def inventory_checklist_params
-      params.require(:inventory_checklist).permit(:number_of_boxes, :others, :customer_id)
+      params.permit(:number_of_boxes, :others, :user_id)
     end
 end

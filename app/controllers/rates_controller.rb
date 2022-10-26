@@ -16,7 +16,7 @@ class RatesController < ApplicationController
   # POST /rates
   def create
     @rate = Rate.new(rate_params)
-
+    # byebug
     if @rate.save
       render json: @rate, status: :created, location: @rate
     else
@@ -46,6 +46,6 @@ class RatesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def rate_params
-      params.require(:rate).permit(:item, :distance, :flat_price, :price_per_unit, :dicount, :mover_id)
+      params.permit(:item, :distance, :start, :end, :flat_price, :price_per_unit, :dicount, :user_id)
     end
 end

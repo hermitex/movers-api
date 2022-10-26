@@ -1,3 +1,3 @@
 class DiningRoomItem < ApplicationRecord
-  belongs_to :item
+  belongs_to :inventory_checklist
 end
