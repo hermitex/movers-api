@@ -48,4 +48,7 @@ class MoveBookingsController < ApplicationController
     def move_booking_params
       params.require(:move_booking).permit(:earliest_date, :latest_date, :status, :customer_id, :mover_id)
     end
+
+    #Booking 
+    
 end
