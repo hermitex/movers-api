@@ -38,6 +38,26 @@ class QuotesController < ApplicationController
     @quote.destroy
   end
 
+#adding item
+  def add_quantity
+    @quote = Quote.find(params[:id])
+    @quote.quantity +=1
+    @quote.save
+  end
+  
+#reducing the item
+
+  def reduce_quantity
+    @quote = Quote.find(params[:id])
+    if quote.quantity > 1
+      @quote.quantity -= 1
+      @quote.save
+      render json: @quote
+    else
+      destroy
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_quote
