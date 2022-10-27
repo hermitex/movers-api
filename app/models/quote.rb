@@ -17,5 +17,4 @@ class Quote < ApplicationRecord
   def valid_quantity_and_price?
     !quantity.to_s.strip.empty? && !product.price.to_s.strip.empty?
   end
-    
 end
