@@ -46,6 +46,6 @@ class LivingRoomItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def living_room_item_params
-      params.require(:living_room_item).permit(:number_of_sofas, :number_of_cabinets, :number_of_tables, :item_id)
+      params.permit(:number_of_sofas, :number_of_cabinets, :number_of_tables, :item_id)
     end
 end

@@ -10,7 +10,7 @@ class InventoryChecklistsController < ApplicationController
 
   # GET /inventory_checklists/1
   def show
-    render json: @inventory_checklist
+    render json: @inventory_checklist, status: :ok
   end
 
   # POST /inventory_checklists
@@ -46,6 +46,6 @@ class InventoryChecklistsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def inventory_checklist_params
-      params.permit(:number_of_boxes, :others, :user_id)
+      params.permit(:name, :category, :count, :image_url, :number_of_boxes, :others, :user_id)
     end
 end

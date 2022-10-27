@@ -16,7 +16,7 @@ class BedRoomItemsController < ApplicationController
   # POST /bed_room_items
   def create
     @bed_room_item = BedRoomItem.new(bed_room_item_params)
-
+byebug
     if @bed_room_item.save
       render json: @bed_room_item, status: :created, location: @bed_room_item
     else
@@ -46,6 +46,6 @@ class BedRoomItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def bed_room_item_params
-      params.require(:bed_room_item).permit(:number_of_beds, :number_of_side_tables, :item_id)
+      params.permit(:number_of_beds, :number_of_side_tables, :item_id)
     end
 end

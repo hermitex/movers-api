@@ -1,3 +1,3 @@
 class KitchenItem < ApplicationRecord
-  belongs_to :inventory_checklist
+  belongs_to :item
 end

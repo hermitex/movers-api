@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_26_184651) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_26_235606) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,16 +25,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_26_184651) do
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "bed_room_items", force: :cascade do |t|
-    t.integer "number_of_beds"
-    t.integer "number_of_side_tables"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "inventory_checklist_id"
-    t.integer "count"
-    t.index ["inventory_checklist_id"], name: "index_bed_room_items_on_inventory_checklist_id"
   end
 
   create_table "chats", force: :cascade do |t|
@@ -53,52 +43,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_26_184651) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "dining_room_items", force: :cascade do |t|
-    t.integer "number_of_dining_chairs"
-    t.integer "number_of_dining_tables"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "inventory_checklist_id"
-    t.integer "count"
-    t.index ["inventory_checklist_id"], name: "index_dining_room_items_on_inventory_checklist_id"
-  end
-
   create_table "inventory_checklists", force: :cascade do |t|
     t.integer "number_of_boxes"
     t.string "others"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.index ["user_id"], name: "index_inventory_checklists_on_user_id"
-  end
-
-  create_table "items", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "kitchen_items", force: :cascade do |t|
-    t.integer "number_of_fridges"
-    t.integer "number_of_cookers"
-    t.integer "number_of_microwaves"
-    t.integer "number_of_washing_machines"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "inventory_checklist_id"
+    t.string "category"
     t.integer "count"
-    t.index ["inventory_checklist_id"], name: "index_kitchen_items_on_inventory_checklist_id"
-  end
-
-  create_table "living_room_items", force: :cascade do |t|
-    t.integer "number_of_sofas"
-    t.integer "number_of_cabinets"
-    t.integer "number_of_tables"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "inventory_checklist_id"
-    t.integer "count"
-    t.index ["inventory_checklist_id"], name: "index_living_room_items_on_inventory_checklist_id"
+    t.string "image_url"
+    t.index ["user_id"], name: "index_inventory_checklists_on_user_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -189,11 +144,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_26_184651) do
     t.index ["location_id"], name: "index_users_on_location_id"
   end
 
-  add_foreign_key "bed_room_items", "inventory_checklists"
   add_foreign_key "chats", "users"
-  add_foreign_key "dining_room_items", "inventory_checklists"
-  add_foreign_key "kitchen_items", "inventory_checklists"
-  add_foreign_key "living_room_items", "inventory_checklists"
   add_foreign_key "notifications", "users"
   add_foreign_key "specialities", "users"
   add_foreign_key "users", "locations"

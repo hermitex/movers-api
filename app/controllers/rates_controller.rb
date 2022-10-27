@@ -1,6 +1,6 @@
 class RatesController < ApplicationController
   before_action :set_rate, only: %i[ show update destroy ]
-  before_action :confirm_user_is_mover_or_admin, only: [:create, :destroy, :update, :patch, :put]
+  # before_action :confirm_user_is_mover_or_admin, only: [:create, :destroy, :update, :patch, :put]
   # rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
   # rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
   # GET /rates
