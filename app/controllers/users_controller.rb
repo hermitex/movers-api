@@ -11,8 +11,28 @@ class UsersController < ApplicationController
 
     def create
         user = User.create!(user_params)
-        session[:user_id] = user.id
-        render json: user, status: :created
+        if @user.save 
+            # session[:user_id] = user.id
+            UserMailer.registration_confirmation(@user).deliver
+            flash[:success] = "Registration completed! Please confirm your email address."
+            redirect_to_root_url
+        else
+            flash[:error] = "Failure: Something went wrong..."
+            render 'new'
+        
+       end
+    end
+
+    def confirm_email
+        user = User.find_by_confirm_token(params[:id])
+        if user_params
+            user.email_activate
+            flash[:success] = 'Welcome to Moovers app! Your account has now been confirmed'
+            redirect_to root_url
+        else
+            flash[:error] = 'Error: User does not exist.'
+            redirect_to root_url
+        end   
     end
 
     def find_user
