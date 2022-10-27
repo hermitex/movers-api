@@ -1,13 +1,21 @@
 class User < ApplicationRecord
   has_secure_password
 
+
   before_create :confirmation_token
   #before save :create_avatar_url
+
+
+  has_many :rates
+  has_many :inventory_checklists
 
   belongs_to :location
   validates :full_name, presence: true, length: {minimum: 3}
   validates :phone,  presence: true, uniqueness: true, length: {minimum: 10}
-  validates :password, presence: true, length: {minimum: 6}, :on => :create, :on => :update
+
+  validates :password, presence: true, :confirmation => true, length: {minimum: 6}, :on => :create, :on => :update
+  validates_confirmation_of :password
+
   validates :type,  presence: true, :on => :create
   validates :account_type,  presence: true, :on => :create
   validates :location_id,  presence: true, :on => :create

@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   resources :items
   resources :inventory_checklists
   resources :customers, only: [:index, :show, :create, :update, :destroy]
-  resources :movers, only: [:index, :create, :update, :destroy]
+  resources :movers, only: [:index, :show, :create, :update, :destroy]
   resources :users, only: [:index, :create, :update, :destroy]
   resources :locations
   resources :users do 
@@ -28,15 +28,10 @@ Rails.application.routes.draw do
 
     # User
     get '/users/:user_id'  => 'users#find_user'
-
+    post '/signup' => 'users#create'
     get '/me' => 'users#show'
-
-    post '/signup' => "users#create"
-
-    # Session
     post '/login' => 'sessions#create'
-
-    delete 'logout' => 'sessions#destroy'
+    delete '/logout' => 'sessions#destroy'
 
 end
 

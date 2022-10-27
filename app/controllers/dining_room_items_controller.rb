@@ -46,6 +46,6 @@ class DiningRoomItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def dining_room_item_params
-      params.require(:dining_room_item).permit(:number_of_dining_chairs, :number_of_dining_tables, :item_id)
+      params.permit(:number_of_dining_chairs, :number_of_dining_tables, :item_id)
     end
 end
