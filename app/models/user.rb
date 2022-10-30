@@ -2,7 +2,7 @@ class User < ApplicationRecord
   has_secure_password
 
 
-  before_create :confirmation_token
+  # before_create :confirmation_token
   #before save :create_avatar_url
 
 
@@ -22,17 +22,17 @@ class User < ApplicationRecord
   validates :email,  presence: true, uniqueness: true, :on => :create
 
 
-  def email_activate
-    self.email_confirmed = true
-    self.confirm_token = nil
-    save!(:validate => false)
-  end
+#   def email_activate
+#     self.email_confirmed = true
+#     self.confirm_token = nil
+#     save!(:validate => false)
+#   end
 
-private
+# private
 
-def confirmation_token
-  if self.confirmation_token.blank?
-    self.confirm_token = SecureRandom.urlsafe_base64.to_s
-  end
- end
-end 
+# def confirmation_token
+#   if self.confirmation_token.blank?
+#     self.confirm_token = SecureRandom.urlsafe_base64.to_s
+#   end
+#  end
+end
