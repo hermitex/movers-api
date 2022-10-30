@@ -84,7 +84,6 @@ class UsersController < ApplicationController
         render json: {error: "User not found!"}, status: :not_found
      end
 
-
     # Only allow a list of trusted parameters through.
     def user_params
       params.permit(:full_name, :phone, :email, :account_type, :type, :password, :password_confirmation, :avatar_url, :location_id)
