@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
     def create
         user = User.create!(user_params)
-        if @user.save 
+        if @user.save
             # session[:user_id] = user.id
             UserMailer.registration_confirmation(@user).deliver
             flash[:success] = "Registration completed! Please confirm your email address."
@@ -19,7 +19,6 @@ class UsersController < ApplicationController
         else
             flash[:error] = "Failure: Something went wrong..."
             render 'new'
-        
        end
     end
 
@@ -32,7 +31,7 @@ class UsersController < ApplicationController
         else
             flash[:error] = 'Error: User does not exist.'
             redirect_to root_url
-        end   
+        end
     end
 
     def find_user
