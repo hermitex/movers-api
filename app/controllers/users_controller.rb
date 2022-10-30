@@ -12,14 +12,14 @@ class UsersController < ApplicationController
 
     # Sign-up
     def create
-        user = User.create!(user_params)  
-        # session[:user_id] = user.id        
+        user = User.create!(user_params)
+        # session[:user_id] = user.id
         # render json: user, status: :created
 
         # # USING JWT
         token = encode_token({ user_id: user.id })
         render json: { user: UserSerializer.new(user), jwt: token }, status: :created
-       # if @user.save 
+       # if @user.save
        #     # session[:user_id] = user.id
        #     UserMailer.registration_confirmation(@user).deliver
        #     flash[:success] = "Registration completed! Please confirm your email address."
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
        # else
        #     flash[:error] = "Failure: Something went wrong..."
        #     render 'new'
-        
+
        # end
     end
 
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
    #     else
    #         flash[:error] = 'Error: User does not exist.'
    #         redirect_to root_url
-   #     end   
+   #     end
    # end
 
     def find_user
@@ -61,7 +61,7 @@ class UsersController < ApplicationController
     end
 
     # auto-login
-    def show        
+    def show
         # user = User.find_by(id: session[:user_id])
         # if user
         #     # byebug
