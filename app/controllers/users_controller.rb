@@ -19,7 +19,29 @@ class UsersController < ApplicationController
         # # USING JWT
         token = encode_token({ user_id: user.id })
         render json: { user: UserSerializer.new(user), jwt: token }, status: :created
+       # if @user.save 
+       #     # session[:user_id] = user.id
+       #     UserMailer.registration_confirmation(@user).deliver
+       #     flash[:success] = "Registration completed! Please confirm your email address."
+       #     redirect_to_root_url
+       # else
+       #     flash[:error] = "Failure: Something went wrong..."
+       #     render 'new'
+        
+       # end
     end
+
+   # def confirm_email
+   #     user = User.find_by_confirm_token(params[:id])
+   #     if user_params
+   #         user.email_activate
+   #         flash[:success] = 'Welcome to Moovers app! Your account has now been confirmed'
+   #         redirect_to root_url
+   #     else
+   #         flash[:error] = 'Error: User does not exist.'
+   #         redirect_to root_url
+   #     end   
+   # end
 
     def find_user
         user = User.find_by(id: params[:user_id])
@@ -55,7 +77,7 @@ class UsersController < ApplicationController
     private
 
      def render_unprocessable_entity(invalid)
-        render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
+        render json: {errors: invalid.record.errors}, status: :unprocessable_entity
      end
 
      def render_not_found
