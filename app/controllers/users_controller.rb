@@ -2,6 +2,7 @@ class UsersController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
+    skip_before_action :authorized, only: [:create]
 
     def index
         users = User.all
@@ -9,10 +10,15 @@ class UsersController < ApplicationController
         render json: users, status: :ok
     end
 
+    # Sign-up
     def create
-        user = User.create!(user_params)
-        session[:user_id] = user.id
-        render json: user, status: :created
+        user = User.create!(user_params)  
+        # session[:user_id] = user.id        
+        # render json: user, status: :created
+
+        # # USING JWT
+        token = encode_token({ user_id: user.id })
+        render json: { user: UserSerializer.new(user), jwt: token }, status: :created
     end
 
     def find_user
@@ -32,14 +38,18 @@ class UsersController < ApplicationController
         render json: user, status: :accepted
     end
 
-    def show
-        user = User.find_by(id: session[:user_id])
-        if user
-            # byebug
-          render json: user, status: :ok
-        else
-          render json: {error: "Unauthorized"}, status: :unauthorized
-        end
+    # auto-login
+    def show        
+        # user = User.find_by(id: session[:user_id])
+        # if user
+        #     # byebug
+        #   render json: user, status: :ok
+        # else
+        #   render json: {error: "Unauthorized"}, status: :unauthorized
+        # end
+
+        # USING JWT
+        render json: { user: UserSerializer.new(current_user) }, status: :accepted
     end
 
     private
