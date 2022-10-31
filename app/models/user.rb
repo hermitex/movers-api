@@ -28,12 +28,7 @@ class User < ApplicationRecord
 #     save!(:validate => false)
 #   end
 
-  #adding price logic per item on the user
-  # def total_price
-  #   @total_price || = inventory_checklists.includes(:item).reduce(0) do |sum, i_check|
-  #     sum + (i_check.count * i_check.item.price)
-  #   end
-  # end
+  
 
 private
 # private
