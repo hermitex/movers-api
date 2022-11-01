@@ -1,5 +1,11 @@
 class User < ApplicationRecord
-  has_secure_password
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+         :confirmable
+         
+  # has_secure_password
 
 
   # before_create :confirmation_token
@@ -20,6 +26,7 @@ class User < ApplicationRecord
   validates :account_type,  presence: true, :on => :create
   validates :location_id,  presence: true, :on => :create
   validates :email,  presence: true, uniqueness: true, :on => :create
+
 
 
 #   def email_activate

@@ -1,6 +1,7 @@
 # routes
 
 Rails.application.routes.draw do
+  devise_for :users, controllers: { confirmations: 'users/confirmations' }
   resources :specialities
   resources :reviews
   resources :rates
@@ -20,11 +21,12 @@ Rails.application.routes.draw do
   resources :movers, only: [:index, :show, :create, :update, :destroy]
   resources :users, only: [:index, :create, :update, :destroy]
   resources :locations
-  resources :users do 
-    member do
-      get :confirm_email
-    end
-  end
+  # resources :users do 
+  #   member do
+  #     get :confirm_email
+  #   end
+  # end
+  
 
     # User
     get '/users/:user_id'  => 'users#find_user'

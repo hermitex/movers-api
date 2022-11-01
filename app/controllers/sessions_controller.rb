@@ -5,8 +5,8 @@ class SessionsController < ApplicationController
   # Logging-in
     def create
       user = User.find_by(email: params[:email])
-      if user&.authenticate(params[:password])        
-        # session[:user_id] = user.id
+      if params[:password]       
+        #  session[:user_id] = user.id
         # # byebug
         # render json: user, status: :created
 
