@@ -28,6 +28,9 @@ class User < ApplicationRecord
 #     save!(:validate => false)
 #   end
 
+  
+
+private
 # private
 
 # def confirmation_token

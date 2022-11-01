@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_31_193548) do
     t.string "balance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.integer "user_id"
     t.index ["user_id"], name: "index_account_balances_on_user_id"
   end
 
@@ -33,7 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_31_193548) do
     t.string "recipient_id"
     t.text "content"
     t.boolean "is_read"
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_chats_on_user_id"
@@ -49,7 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_31_193548) do
     t.string "others"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.integer "user_id"
     t.string "name"
     t.string "category"
     t.integer "count"
@@ -71,7 +71,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_31_193548) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.integer "user_id"
     t.index ["user_id"], name: "index_move_bookings_on_user_id"
   end
 
@@ -95,7 +95,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_31_193548) do
 
   create_table "notifications", force: :cascade do |t|
     t.text "message"
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_notifications_on_user_id"
@@ -106,8 +106,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_31_193548) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "inventory_checklist_id"
-    t.bigint "user_id"
+    t.integer "inventory_checklist_id"
+    t.integer "user_id"
     t.index ["inventory_checklist_id"], name: "index_quotes_on_inventory_checklist_id"
     t.index ["user_id"], name: "index_quotes_on_user_id"
   end
@@ -133,7 +133,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_31_193548) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.integer "user_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
@@ -141,7 +141,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_31_193548) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.integer "user_id"
     t.index ["user_id"], name: "index_specialities_on_user_id"
   end
 
@@ -153,7 +153,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_31_193548) do
     t.string "type"
     t.string "password_digest"
     t.string "avatar_url"
-    t.bigint "location_id", null: false
+    t.integer "location_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "email_cofirmed", default: false

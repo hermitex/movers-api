@@ -251,5 +251,4 @@ Rate.create!(
     }
   ]
 )
-
 puts "Seeding successfull!"
