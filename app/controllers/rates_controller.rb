@@ -1,6 +1,6 @@
 class RatesController < ApplicationController
   before_action :set_rate, only: %i[ show update destroy ]
-  # before_action :confirm_user_is_mover_or_admin, only: [:create, :destroy, :update, :patch, :put]
+  before_action :confirm_user_is_mover_or_admin, only: [:create, :destroy, :update, :patch, :put]
   # rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
   # rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
   # GET /rates
@@ -63,14 +63,14 @@ class RatesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def rate_params
-      params.permit(:item, :distance, :start, :end, :flat_price, :price_per_unit, :dicount, :user_id)
+      params.permit(:item_name, :category, :count, :distance, :start, :end, :flat_price, :price_per_unit, :dicount, :user_id)
     end
 
     # Only a Mover and Admin can manage rates
     def confirm_user_is_mover_or_admin
-      logger.debug("session #{session.inspect}")
+      user = UserSerializer.new(current_user).to_hash
       byebug
-      if !session[:user_id] && User.find(session[:account_type])&.account_type  != "customer" || User.find(session[:account_type])&.account_type != "admin"
+      if !user[:account_type] === "mover" || !user[:account_type] === "admin" then
         render json: {error: "Not authorized. You must be Admin or Mover to edit rates!"}, status: :unauthorized
       end
     end
