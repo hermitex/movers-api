@@ -40,6 +40,21 @@ class RatesController < ApplicationController
     @rate.destroy
   end
 
+  #adding price logic per item on the user
+  # def rates
+  # item.price_per_unit * count
+  # #   @total_price || = inventory_checklists.includes(:item).reduce(0) do |sum, i_check|
+  # #     sum + (i_check.count * i_check.item.price)
+  #   # end
+  # end
+  def rates
+    total_price = 0
+    item.each do |basket_item|
+      total_price += basket_item.total_price
+    end
+    total_price
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_rate
