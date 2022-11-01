@@ -5,7 +5,7 @@ class RatesController < ApplicationController
   # rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
   # GET /rates
   def index
-    @rates = Rate.all
+    @rates = Rate.group(:id, :category)
 
     render json: @rates
   end
@@ -48,7 +48,7 @@ class RatesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def rate_params
-      params.permit(:item_name, :category, :count, :distance, :start, :end, :flat_price, :price_per_unit, :dicount, :user_id)
+      params.permit(:item_name, :category, :count, :distance, :start, :end, :flat_price, :price_per_unit, :discount, :user_id)
     end
 
     # Only a Mover and Admin can manage rates

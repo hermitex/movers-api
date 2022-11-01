@@ -6,5 +6,5 @@ class Rate < ApplicationRecord
   validates :distance,  presence: true
   validates :flat_price, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :price_per_unit, presence: true, numericality: { greater_than_or_equal_to: 0 }
-  validates :dicount, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :discount, presence: true, numericality: { greater_than_or_equal_to: 0 }
 end

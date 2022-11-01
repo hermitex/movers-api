@@ -63,6 +63,16 @@ User.create!(
       "account_type": "mover",
       "location_id": 2,
       "email": 'denismaina@gmail.com'
+    },
+    {
+      "full_name": 'Admin',
+      "phone": '0797165750',
+      "password": 'admin',
+      "avatar_url": '',
+      "type": 'Admin',
+      "account_type": "admin",
+      "location_id": 1,
+      "email": 'admin@gmail.com'
     }
   ]
 )
@@ -76,7 +86,7 @@ Rate.create!(
       "distance": 10,
       "flat_price": 450,
       "price_per_unit": 350,
-      "dicount": 0.5,
+      "discount": 0.5,
       "start": 15,
       "end": 40,
       "user_id": 2
@@ -88,7 +98,7 @@ Rate.create!(
       "distance": 10,
       "flat_price": 450,
       "price_per_unit": 350,
-      "dicount": 0.5,
+      "discount": 0.5,
       "start": 15,
       "end": 40,
       "user_id": 2
@@ -100,7 +110,7 @@ Rate.create!(
       "distance": 10,
       "flat_price": 450,
       "price_per_unit": 50,
-      "dicount": 0.5,
+      "discount": 0.5,
       "start": 15,
       "end": 40,
       "user_id": 2
@@ -112,7 +122,7 @@ Rate.create!(
       "distance": 10,
       "flat_price": 450,
       "price_per_unit": 50,
-      "dicount": 0.5,
+      "discount": 0.5,
       "start": 15,
       "end": 40,
       "user_id": 2
@@ -124,7 +134,7 @@ Rate.create!(
       "distance": 10,
       "flat_price": 450,
       "price_per_unit": 30,
-      "dicount": 0.5,
+      "discount": 0.5,
       "start": 15,
       "end": 40,
       "user_id": 2
@@ -136,7 +146,7 @@ Rate.create!(
       "distance": 10,
       "flat_price": 450,
       "price_per_unit": 30,
-      "dicount": 0.5,
+      "discount": 0.5,
       "start": 15,
       "end": 40,
       "user_id": 2
@@ -148,7 +158,7 @@ Rate.create!(
       "distance": 10,
       "flat_price": 450,
       "price_per_unit": 30,
-      "dicount": 0.5,
+      "discount": 0.5,
       "start": 15,
       "end": 40,
       "user_id": 2
@@ -160,7 +170,7 @@ Rate.create!(
       "distance": 10,
       "flat_price": 450,
       "price_per_unit": 30,
-      "dicount": 0.5,
+      "discount": 0.5,
       "start": 15,
       "end": 40,
       "user_id": 2
@@ -172,7 +182,7 @@ Rate.create!(
       "distance": 10,
       "flat_price": 450,
       "price_per_unit": 30,
-      "dicount": 0.5,
+      "discount": 0.5,
       "start": 15,
       "end": 40,
       "user_id": 2
@@ -184,7 +194,7 @@ Rate.create!(
       "distance": 10,
       "flat_price": 450,
       "price_per_unit": 30,
-      "dicount": 0.5,
+      "discount": 0.5,
       "start": 15,
       "end": 40,
       "user_id": 2
@@ -196,7 +206,7 @@ Rate.create!(
       "distance": 10,
       "flat_price": 450,
       "price_per_unit": 30,
-      "dicount": 0.5,
+      "discount": 0.5,
       "start": 15,
       "end": 40,
       "user_id": 2
@@ -208,7 +218,7 @@ Rate.create!(
       "distance": 10,
       "flat_price": 450,
       "price_per_unit": 30,
-      "dicount": 0.5,
+      "discount": 0.5,
       "start": 15,
       "end": 40,
       "user_id": 2
@@ -220,7 +230,7 @@ Rate.create!(
       "distance": 10,
       "flat_price": 450,
       "price_per_unit": 30,
-      "dicount": 0.5,
+      "discount": 0.5,
       "start": 15,
       "end": 40,
       "user_id": 2
@@ -232,7 +242,7 @@ Rate.create!(
       "distance": 10,
       "flat_price": 450,
       "price_per_unit": 30,
-      "dicount": 0.5,
+      "discount": 0.5,
       "start": 15,
       "end": 40,
       "user_id": 2
@@ -244,7 +254,7 @@ Rate.create!(
       "distance": 10,
       "flat_price": 450,
       "price_per_unit": 30,
-      "dicount": 0.5,
+      "discount": 0.5,
       "start": 15,
       "end": 40,
       "user_id": 2
