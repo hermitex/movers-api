@@ -1,6 +1,7 @@
 # routes
 
 Rails.application.routes.draw do
+  resources :payments
   resources :specialities
   resources :reviews
   resources :rates

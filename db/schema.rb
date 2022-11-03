@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_31_223140) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "hstore"
-  enable_extension "plpgsql"
-
+ActiveRecord::Schema[7.0].define(version: 2022_11_03_073340) do
   create_table "account_balances", force: :cascade do |t|
     t.string "balance"
     t.datetime "created_at", null: false
@@ -45,12 +41,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_31_223140) do
   end
 
   create_table "inventory_checklists", force: :cascade do |t|
-    t.integer "number_of_boxes"
-    t.string "others"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.string "name"
+    t.string "item_name"
     t.string "category"
     t.integer "count"
     t.string "image_url"
@@ -66,12 +60,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_31_223140) do
   end
 
   create_table "move_bookings", force: :cascade do |t|
-    t.date "earliest_date"
-    t.date "latest_date"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.integer "mover_id"
+    t.integer "customer_id"
+    t.string "moving_from"
+    t.string "moving_to"
+    t.date "moving_date"
     t.index ["user_id"], name: "index_move_bookings_on_user_id"
   end
 
@@ -99,6 +96,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_31_223140) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.datetime "payment_date"
+    t.decimal "amount"
+    t.integer "customer_id"
+    t.integer "mover_id"
+    t.string "status"
+    t.integer "move_bookings_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["move_bookings_id"], name: "index_payments_on_move_bookings_id"
   end
 
   create_table "quotes", force: :cascade do |t|
@@ -180,6 +189,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_31_223140) do
 
   add_foreign_key "chats", "users"
   add_foreign_key "notifications", "users"
+  add_foreign_key "payments", "move_bookings", column: "move_bookings_id"
   add_foreign_key "specialities", "users"
   add_foreign_key "users", "locations"
 end

@@ -1,4 +1,5 @@
 class InventoryChecklistSerializer < ActiveModel::Serializer
-  attributes :id, :name, :category, :count, :image_url, :number_of_boxes, :others
+  attributes :id, :item_name, :category, :count, :image_url
   belongs_to :user
+  has_many :move_bookings
 end
