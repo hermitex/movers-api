@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_03_073340) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_03_122531) do
   create_table "account_balances", force: :cascade do |t|
     t.string "balance"
     t.datetime "created_at", null: false
@@ -46,7 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_03_073340) do
     t.integer "user_id"
     t.string "item_name"
     t.string "category"
-    t.integer "count"
+    t.integer "item_count"
     t.string "image_url"
     t.index ["user_id"], name: "index_inventory_checklists_on_user_id"
   end
@@ -69,6 +69,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_03_073340) do
     t.string "moving_from"
     t.string "moving_to"
     t.date "moving_date"
+    t.integer "inventory_checklist_id"
     t.index ["user_id"], name: "index_move_bookings_on_user_id"
   end
 
@@ -104,10 +105,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_03_073340) do
     t.integer "customer_id"
     t.integer "mover_id"
     t.string "status"
-    t.integer "move_bookings_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["move_bookings_id"], name: "index_payments_on_move_bookings_id"
+    t.integer "move_booking_id"
+    t.index ["move_booking_id"], name: "index_payments_on_move_booking_id"
   end
 
   create_table "quotes", force: :cascade do |t|
@@ -188,8 +189,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_03_073340) do
   end
 
   add_foreign_key "chats", "users"
+  add_foreign_key "move_bookings", "inventory_checklists"
   add_foreign_key "notifications", "users"
-  add_foreign_key "payments", "move_bookings", column: "move_bookings_id"
+  add_foreign_key "payments", "move_bookings"
   add_foreign_key "specialities", "users"
   add_foreign_key "users", "locations"
 end

@@ -1,3 +1,3 @@
 class Payment < ApplicationRecord
-  belongs_to :move_bookings
+  belongs_to :move_booking
 end

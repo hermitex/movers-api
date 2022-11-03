@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   resources :movers, only: [:index, :show, :create, :update, :destroy]
   resources :users, only: [:index, :create, :update, :destroy]
   resources :locations
-  resources :users do 
+  resources :users do
     member do
       get :confirm_email
     end
@@ -33,6 +33,9 @@ Rails.application.routes.draw do
     get '/me' => 'users#show'
     post '/login' => 'sessions#create'
     delete '/logout' => 'sessions#destroy'
+
+    # my orders
+    get '/bookings' => "move_bookings#index"
 
 end
 

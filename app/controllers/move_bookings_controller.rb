@@ -46,7 +46,7 @@ class MoveBookingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def move_booking_params
-      params.permit(:inventory_checklists_id, :moving_from, :moving_to,  :moving_date, :customer_id, :mover_id, :status)
+      params.permit(:inventory_checklist_id, :moving_from, :moving_to,  :moving_date, :customer_id, :mover_id, :status)
     end
 
     #Booking
